@@ -49,7 +49,7 @@ function createCaptchaImage($code) {
     for ($i = 0; $i < strlen($code); $i++) {
         $font_size = rand(15, 25 );
         $y = rand(20, $height - 10); 
-        $z = rand(0, 40 );
+        $z = rand(0, 70 );
         $text_char = $code[$i];
 
         imagettftext($image, $font_size, $z, $x, $y, $text_color, $font_path, $text_char);
