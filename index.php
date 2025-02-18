@@ -44,13 +44,15 @@ function createCaptchaImage($code) {
     $font_path= "CAMBRIAZ.ttf";
     $letter_spacing = 10; 
     $x = 10; 
+    
 
     for ($i = 0; $i < strlen($code); $i++) {
         $font_size = rand(15, 25 );
         $y = rand(20, $height - 10); 
+        $z = rand(0, 40 );
         $text_char = $code[$i];
 
-        imagettftext($image, $font_size, 0, $x, $y, $text_color, $font_path, $text_char);
+        imagettftext($image, $font_size, $z, $x, $y, $text_color, $font_path, $text_char);
         $x += $font_size + $letter_spacing; 
     }
     
