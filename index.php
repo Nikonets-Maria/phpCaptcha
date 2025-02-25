@@ -41,15 +41,19 @@ function createCaptchaImage($code) {
     
     imagefill($image, 0, 0, $background_color);
 
+    for ($i = 0; $i < 10; $i++) { 
+        $line_color = imagecolorallocate($image, rand(0, 255), rand(0, 255), rand(0, 255)); 
+        imageline($image, rand(0, $width), rand(0, $height), rand(0, $width), rand(0, $height), $line_color);
+    }
+
     $font_path= "CAMBRIAZ.ttf";
     $letter_spacing = 10; 
     $x = 10; 
-    
 
     for ($i = 0; $i < strlen($code); $i++) {
-        $font_size = rand(15, 25 );
+        $font_size = rand(15, 25);
         $y = rand(20, $height - 10); 
-        $z = rand(0, 70 );
+        $z = rand(0, 70);
         $text_char = $code[$i];
 
         imagettftext($image, $font_size, $z, $x, $y, $text_color, $font_path, $text_char);
@@ -60,6 +64,7 @@ function createCaptchaImage($code) {
     imagepng($image);
     imagedestroy($image);
 }
+
 
 if (isset($_GET['captcha'])) {
     createCaptchaImage($captcha_code);
